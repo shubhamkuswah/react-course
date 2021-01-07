@@ -25,6 +25,17 @@ export class App extends Component {
     this.setState({persons:persons})
   }
 
+  nameChangeHandler = (event, id)=>{
+    const personIndex = this.state.persons.findIndex(p=>{
+      return p.id === id;
+    })
+    const person = {...this.state.persons[personIndex]}
+    person.personName = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({persons:persons})
+  }
+
   render() {
     const style = {
       backgroundColor : 'white',
@@ -42,7 +53,8 @@ export class App extends Component {
         {
         this.state.persons.map((person,index)=>{
         return <Person
-        delete= {()=> this.deletePersonHandler(index)} 
+        delete= {()=> this.deletePersonHandler(index)}
+        changed= {(event)=> this.nameChangeHandler(event,person.id)}
         personName={person.personName} 
         age={person.age} 
         key={person.id}
