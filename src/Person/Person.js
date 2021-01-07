@@ -6,7 +6,7 @@ const person = (Props)=>{
     return(
     <div className='Person'>
     <p>Name: {Props.personName} Age: {Props.age}</p>
-    <button onMouseEnter={Props.hover} onMouseLeave={Props.leave}>Revel real names:)</button>
+    <button onClick={Props.delete}>Delete Person</button>
     </div>
     )
 }

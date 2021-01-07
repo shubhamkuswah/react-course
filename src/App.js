@@ -4,27 +4,25 @@ import Person from './Person/Person';
 
 export class App extends Component {
   state = {
-    persons: [{personName: 'Daiv', age:'28'},{personName:'Classified' ,age:'34'},{personName:'Doc', age:'54'}],
+    persons: [
+      {id:1,personName: 'Daiv', age:'28'},
+      {id:2,personName:'Classified' ,age:'34'},
+      {id:3,personName:'Doc', age:'54'}
+    ],
     otherState: 'other value',
     showPersons: false
   }
 
-  switchNameNew = ()=> {
-    // console.log('was clicked!');    
-    this.setState({persons: [{personName: 'Daiv the octopus', age:'28'},{personName:'Classified the husky' ,age:'34'},{personName:'Doc disrespect', age:'54'}]})
-  }
 
-  switchNameOld = ()=>{
-    this.setState({persons: [{personName: 'Daiv', age:'28'},{personName:'Classified' ,age:'34'},{personName:'Doc', age:'54'}]})
-  }
-
-  mouseHandler = ()=>{
-    console.log('mouse detected!')
-  }
-
-  tooglePersonHenalder = ()=>{
+  tooglePersonHandler = ()=>{
     const currentStatus = this.state.showPersons;
     this.setState({showPersons: !currentStatus})
+  }
+
+  deletePersonHandler = (index)=>{
+    const persons = [...this.state.persons];
+    persons.splice(index,1)
+    this.setState({persons:persons})
   }
 
   render() {
@@ -35,35 +33,32 @@ export class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     }
+
+    let persons = null;
+
+    if(this.state.showPersons){
+      persons =(
+        <div>
+        {
+        this.state.persons.map((person,index)=>{
+        return <Person
+        delete= {()=> this.deletePersonHandler(index)} 
+        personName={person.personName} 
+        age={person.age} 
+        key={person.id}
+        />  
+        })}
+        </div> 
+      )
+    }
+
     return (
       <div className="App">
         <h1>ReactDemo App!</h1>
         <button style={style}
-        onClick={this.tooglePersonHenalder}>
+        onClick={this.tooglePersonHandler}>
         {this.state.showPersons? 'Hide Persons' : 'Show Persons'}</button>
-        { this.state.showPersons ?
-        <div>
-        <Person 
-        personName={this.state.persons[0].personName} 
-        age={this.state.persons[0].age} 
-        hover={this.switchNameNew}
-        leave={this.switchNameOld}
-        />
-        <Person 
-        personName={this.state.persons[1].personName} 
-        age={this.state.persons[1].age}
-        hover={this.switchNameNew}
-        leave={this.switchNameOld}
-        />
-        <Person 
-        personName={this.state.persons[2].personName} 
-        age={this.state.persons[2].age}
-        hover={this.switchNameNew}
-        leave={this.switchNameOld}
-        />
-        </div> : null
-        }
-        
+        {persons}
       </div>
     );
   }
