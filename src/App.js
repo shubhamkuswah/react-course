@@ -10,7 +10,7 @@ export class App extends Component {
       {id:3,personName:'Doc', age:'54'}
     ],
     otherState: 'other value',
-    showPersons: false
+    showPersons: false,    
   }
 
 
@@ -35,10 +35,10 @@ export class App extends Component {
     persons[personIndex] = person;
     this.setState({persons:persons})
   }
-
+  
   render() {
     const style = {
-      backgroundColor : 'white',
+      backgroundColor : 'green',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -48,6 +48,7 @@ export class App extends Component {
     let persons = null;
 
     if(this.state.showPersons){
+      style.backgroundColor = 'red'
       persons =(
         <div>
         {
@@ -63,10 +64,18 @@ export class App extends Component {
         </div> 
       )
     }
+    const styleClasses = [];
+    if(this.state.persons.length <=2){
+      styleClasses.push('red')
+    }
+    if(this.state.persons.length <=1){
+      styleClasses.push('bold')
+    }
 
     return (
       <div className="App">
-        <h1>ReactDemo App!</h1>
+        <h1 >ReactDemo App!</h1>
+        <p className={styleClasses.join(' ')} >Checking multiple styles in JSX!</p>
         <button style={style}
         onClick={this.tooglePersonHandler}>
         {this.state.showPersons? 'Hide Persons' : 'Show Persons'}</button>
