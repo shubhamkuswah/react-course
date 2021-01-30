@@ -11,7 +11,7 @@
 }
 
 .button {
-  background-color : 'green';
+  background-color : green;
       color: white;
       font: inherit;
       border: 1px solid blue;
@@ -20,6 +20,6 @@
 }
 
 .button:hover {
-  background-color: 'lightgreen';
+  background-color: lightgreen;
         color: black
 }

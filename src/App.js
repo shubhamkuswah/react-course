@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person';
 
-const StyledButton = styled.button`
-      background-color : ${props=> props.alt? 'red': 'green'};
-      color: white;
-      font: inherit;
-      border: 1px solid blue;
-      padding: 8px;
-      cursor: pointer;
-      &:hover {
-        background-color: ${props=> props.alt? 'salmon': 'lightgreen'};
-        color: black
-      }`;
+
 class App extends Component {
   state = {
     persons: [
@@ -49,27 +38,12 @@ class App extends Component {
   }
   
   render() {
-    const style = {
-      backgroundColor : 'green',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    }
+ 
 
     let persons = null;
 
     if(this.state.showPersons){
-      style.backgroundColor = 'red'
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
-      
+ 
       persons =(
         <div>
         {
@@ -97,10 +71,10 @@ class App extends Component {
         <div className="App">
         <h1 >ReactDemo App!</h1>
         <p className={styleClasses.join(' ')} >Checking multiple styles in JSX!</p>
-        <StyledButton 
-        alt={this.state.showPersons}
+        <button className='button'
         onClick={this.tooglePersonHandler}>
-        {this.state.showPersons? 'Hide Persons' : 'Show Persons'}</StyledButton>
+        {this.state.showPersons? 'Hide Persons' : 'Show Persons'}
+        </button>
         {persons}
       </div>
     );
