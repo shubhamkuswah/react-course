@@ -1,8 +1,19 @@
-import Radium from 'radium';
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person';
 
+const StyledButton = styled.button`
+      background-color : green;
+      color: white;
+      font: inherit;
+      border: 1px solid blue;
+      padding: 8px;
+      cursor: pointer;
+      &:hover {
+        background-color: lightgreen;
+        color: black
+      }`;
 class App extends Component {
   state = {
     persons: [
@@ -58,6 +69,7 @@ class App extends Component {
         backgroundColor: 'salmon',
         color: 'black'
       }
+      
       persons =(
         <div>
         {
@@ -82,16 +94,16 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+        <div className="App">
         <h1 >ReactDemo App!</h1>
         <p className={styleClasses.join(' ')} >Checking multiple styles in JSX!</p>
-        <button style={style}
+        <StyledButton 
         onClick={this.tooglePersonHandler}>
-        {this.state.showPersons? 'Hide Persons' : 'Show Persons'}</button>
+        {this.state.showPersons? 'Hide Persons' : 'Show Persons'}</StyledButton>
         {persons}
       </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
