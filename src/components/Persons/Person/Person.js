@@ -9,6 +9,7 @@ class Person extends Component {
         <div className={classes.Person}>
             <p>Name: {this.props.personName} Age: {this.props.age}</p>
             <input type='text' onChange={this.props.changed}></input>
+            <p></p>
             <button onClick={this.props.delete}>Delete Person</button>
         </div>
         )

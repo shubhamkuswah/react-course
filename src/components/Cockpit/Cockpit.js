@@ -2,26 +2,39 @@ import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit =(props)=>{
-    useEffect(()=>{
-        console.log('[cockpit.js] useEffect');
-        setTimeout(()=>{
-            alert('Data saved successfully!', 3000)
-        })
-    },[])
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect');
+        // Http request...
+        setTimeout(() => {
+          alert('Saved data to cloud!');
+        }, 1000);
+        return () => {
+          console.log('[Cockpit.js] cleanup work in useEffect');
+        };
+      }, []);
+    
+      useEffect(() => {
+        console.log('[Cockpit.js] 2nd useEffect');
+        return () => {
+          console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+        };
+      });
+      
     let btnClass = ''
 
     if(props.showPersons){
         btnClass = classes.Red;
     }
     const styleClasses = [];
-    if(props.persons.length <=2){
+    if(props.personsLength <=2){
       styleClasses.push(classes.red)
     }
-    if(props.persons.length <=1){
+    if(props.personsLength <=1){
       styleClasses.push(classes.bold)
     }
     return(
         <div className={classes.Cockpit}>
+        
             <h1>{props.title}</h1>
             <p className={styleClasses.join(' ')} >Checking multiple styles in JSX!</p>
             <button className={btnClass}
@@ -33,4 +46,4 @@ const cockpit =(props)=>{
     )
 }
 
-export default cockpit;
+export default React.memo(cockpit);
