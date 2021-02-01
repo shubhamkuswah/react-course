@@ -16,7 +16,7 @@ const cockpit =(props)=>{
     }
     return(
         <div className={classes.Cockpit}>
-            <h1 >ReactDemo App!</h1>
+            <h1>{props.title}</h1>
             <p className={styleClasses.join(' ')} >Checking multiple styles in JSX!</p>
             <button className={btnClass}
             onClick={props.clicked}>
