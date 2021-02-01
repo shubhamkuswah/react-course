@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person';
 
 
@@ -38,12 +38,10 @@ class App extends Component {
   }
   
   render() {
- 
-
     let persons = null;
-
+    let btnClass = ''
     if(this.state.showPersons){
- 
+      btnClass = classes.Red;
       persons =(
         <div>
         {
@@ -61,17 +59,17 @@ class App extends Component {
     }
     const styleClasses = [];
     if(this.state.persons.length <=2){
-      styleClasses.push('red')
+      styleClasses.push(classes.red)
     }
     if(this.state.persons.length <=1){
-      styleClasses.push('bold')
+      styleClasses.push(classes.bold)
     }
 
     return (
-        <div className="App">
+        <div className={classes.App}>
         <h1 >ReactDemo App!</h1>
         <p className={styleClasses.join(' ')} >Checking multiple styles in JSX!</p>
-        <button className='button'
+        <button className={btnClass}
         onClick={this.tooglePersonHandler}>
         {this.state.showPersons? 'Hide Persons' : 'Show Persons'}
         </button>
