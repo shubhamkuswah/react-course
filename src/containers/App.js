@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Cockpit from '../components/Cockpit/Cockpit';
+import Persons from '../components/Persons/Persons';
 import classes from './App.module.css';
-import Person from './Person/Person';
 
 
 class App extends Component {
@@ -39,40 +40,22 @@ class App extends Component {
   
   render() {
     let persons = null;
-    let btnClass = ''
+    
     if(this.state.showPersons){
-      btnClass = classes.Red;
       persons =(
-        <div>
-        {
-        this.state.persons.map((person,index)=>{
-        return <Person
-        delete= {()=> this.deletePersonHandler(index)}
-        changed= {(event)=> this.nameChangeHandler(event,person.id)}
-        personName={person.personName} 
-        age={person.age} 
-        key={person.id}
-        />  
-        })}
-        </div> 
+        <Persons persons={this.state.persons}
+        delete={this.deletePersonHandler}
+        changed={this.nameChangeHandler}>
+        </Persons>
       )
-    }
-    const styleClasses = [];
-    if(this.state.persons.length <=2){
-      styleClasses.push(classes.red)
-    }
-    if(this.state.persons.length <=1){
-      styleClasses.push(classes.bold)
     }
 
     return (
         <div className={classes.App}>
-        <h1 >ReactDemo App!</h1>
-        <p className={styleClasses.join(' ')} >Checking multiple styles in JSX!</p>
-        <button className={btnClass}
-        onClick={this.tooglePersonHandler}>
-        {this.state.showPersons? 'Hide Persons' : 'Show Persons'}
-        </button>
+        <Cockpit 
+        showPersons={this.state.showPersons} 
+        persons={this.state.persons}
+        clicked={this.tooglePersonHandler}/>
         {persons}
       </div>
     );
