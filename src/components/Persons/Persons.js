@@ -15,7 +15,6 @@ class Persons extends Component {
         }else {
             return false
         }
-        
     }
 
     getSnapshotBeforeUpdate(prevProps,prevState){
@@ -42,7 +41,7 @@ class Persons extends Component {
             age={person.age} 
             key={person.id}
             />  
-            })
+        })
     }
   
 }
