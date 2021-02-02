@@ -1,6 +1,7 @@
 
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import AuthContext from '../../../context/auth-context';
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
 import classes from './Person.css';
@@ -17,7 +18,10 @@ class Person extends Component {
         console.log('[person.js] rendering.....');
         return(
         <Aux>
-            {this.props.auth? <p>Authenticated!</p>: <p>Unauthorized!</p>}
+            <AuthContext.Consumer>
+                {(context)=> context.authenticated ? <p>Authenticated!</p>: <p>Unauthorized!</p>}
+            </AuthContext.Consumer>
+            {/* {this.props.auth? <p>Authenticated!</p>: <p>Unauthorized!</p>} */}
             <p>Name: {this.props.personName} Age: {this.props.age}</p>
             <input 
             ref={this.inputElementRef} 
