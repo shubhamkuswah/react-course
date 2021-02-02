@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit =(props)=>{
+  const btnRef = useRef(null);
+  
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         // Http request...
-        setTimeout(() => {
-          alert('Saved data to cloud!');
-        }, 1000);
+        // setTimeout(() => {
+        //   alert('Saved data to cloud!');
+        // }, 1000);
+        btnRef.current.click()
         return () => {
           console.log('[Cockpit.js] cleanup work in useEffect');
         };
@@ -34,15 +37,14 @@ const cockpit =(props)=>{
     }
     return(
         <div className={classes.Cockpit}>
-        
             <h1>{props.title}</h1>
             <p className={styleClasses.join(' ')} >Checking multiple styles in JSX!</p>
-            <button className={btnClass}
+            <button ref={btnRef} className={btnClass}
             onClick={props.clicked}>
             {props.showPersons? 'Hide Persons' : 'Show Persons'}
             </button>
+            <button onClick={props.login}>Login</button>
         </div>
-
     )
 }
 

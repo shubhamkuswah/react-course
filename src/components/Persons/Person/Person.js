@@ -17,6 +17,7 @@ class Person extends Component {
         console.log('[person.js] rendering.....');
         return(
         <Aux>
+            {this.props.auth? <p>Authenticated!</p>: <p>Unauthorized!</p>}
             <p>Name: {this.props.personName} Age: {this.props.age}</p>
             <input 
             ref={this.inputElementRef} 

@@ -8,14 +8,14 @@ class Persons extends Component {
     //     return null;
     // }
 
-    shouldComponentUpdate(nextProps,nextState){
-        console.log('[Persons.js] shouldComponentUpdate');
-        if(nextProps.persons !== this.props.persons){
-            return true;
-        }else {
-            return false
-        }
-    }
+    // shouldComponentUpdate(nextProps,nextState){
+    //     console.log('[Persons.js] shouldComponentUpdate');
+    //     if(nextProps.persons !== this.props.persons){
+    //         return true;
+    //     }else {
+    //         return false
+    //     }
+    // }
 
     getSnapshotBeforeUpdate(prevProps,prevState){
         console.log('[Persons.js] getSnapshotBeforeUpdate');
@@ -33,6 +33,7 @@ class Persons extends Component {
 
     render(){
         console.log('[Persons.js] rendering..');
+        console.log(this.props.authenticated,'authenticated flag');
         return this.props.persons.map((person,index)=>{
             return <Person
             delete= {()=> this.props.delete(index)}
@@ -40,6 +41,7 @@ class Persons extends Component {
             personName={person.personName} 
             age={person.age} 
             key={person.id}
+            auth={this.props.authenticated}
             />  
         })
     }
