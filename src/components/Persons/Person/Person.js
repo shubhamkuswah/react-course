@@ -1,17 +1,27 @@
+
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
 import classes from './Person.css';
-
-
 class Person extends Component {  
+    constructor(props){
+        super();
+        this.inputElementRef = React.createRef();
+    }
+
+    componentDidMount(){
+        this.inputElementRef.current.focus();
+    }
     render(){
         console.log('[person.js] rendering.....');
         return(
         <Aux>
             <p>Name: {this.props.personName} Age: {this.props.age}</p>
-            <input type='text' onChange={this.props.changed}></input>
+            <input 
+            ref={this.inputElementRef} 
+            type='text' onChange={this.props.changed}>
+            </input>
             <p></p>
             <button onClick={this.props.delete}>Delete Person</button>
         </Aux>
